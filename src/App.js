@@ -1,25 +1,23 @@
-import logo from './logo.svg';
+// import css file
 import './App.css';
+import Header from './Header';
+import Content from './Content';
+import Footer from './Footer';
 
+// modern react uses functional components
 function App() {
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <Content/>
+      <Footer/>
     </div>
   );
+  // component returns jsx (javascript in xml)
+  // we can put javascript expressions in the code
+  // use {} to use a javascript expression but NOT objects or bool
 }
 
+// default export
 export default App;
