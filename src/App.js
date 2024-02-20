@@ -1,5 +1,3 @@
-// import css file
-import './App.css';
 import Header from './Header';
 import Content from './Content';
 import Footer from './Footer';
@@ -21,3 +19,6 @@ function App() {
 
 // default export
 export default App;
+
+// ADDING STYLES
+// use something called "styled-components" as package
