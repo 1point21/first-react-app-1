@@ -1,73 +1,19 @@
 import React from "react";
-import { useState } from "react";
-import { FaTrashAlt } from "react-icons/fa";
+import ItemList from "./ItemList";
 
-const Content = () => {
-  // this is using array destructuring from useState object from react
-  // 'name' is the getter, 'setName' is the setter
-  // then we give a default state as 'James' to use when the page is loaded
-  // NOTE - need to use const because don't ever want to change the state directly
-  //   const [name, setName] = useState("James");
-  //   const [count, setCount] = useState(0)
-  const [items, setItems] = useState([
-    {
-      id: 1,
-      checked: false,
-      item: "One half pound bag of nuts",
-    },
-    {
-      id: 2,
-      checked: false,
-      item: "Item 2",
-    },
-    {
-      id: 3,
-      checked: false,
-      item: "Item 3",
-    },
-  ]);
-
-  const handleCheck = (id) => {
-    const listItems = items.map((item) =>
-      item.id === id ? { ...item, checked: !item.checked } : item
-    );
-    setItems(listItems);
-    localStorage.setItem("shoppinglist", JSON.stringify(listItems));
-  };
-
-  const handleDelete = (id) => {
-    const listItems = items.filter((item) => item.id !== id)
-    setItems(listItems);
-    localStorage.setItem("shoppinglist", JSON.stringify(listItems));
-  };
-
+// items passed down from parent via props and prop drilling
+const Content = ({ items, handleCheck, handleDelete }) => {
   return (
     <main>
-        {items.length ? (
-      <ul>
-        {items.map((item) => (
-          <li className="item" key={item.id}>
-            <input
-              type="checkbox"
-              onChange={() => handleCheck(item.id)}
-              checked={item.checked}
-            />
-            <label
-              onDoubleClick={() => handleCheck(item.id)}
-              style={item.checked ? { textDecoration: "line-through" } : null}>
-              {item.item}
-            </label>
-            <FaTrashAlt
-              onClick={() => handleDelete(item.id)}
-              role="button"
-              tabIndex="0"
-            />
-          </li>
-        ))}
-      </ul>
-        ) :(
-            <p style={{ marginTop: "2rem"}}>Your list is empty!</p>
-        ) }
+      {items.length ? (
+        <ItemList
+          items={items}
+          handleCheck={handleCheck}
+          handleDelete={handleDelete}
+        />
+      ) : (
+        <p style={{ marginTop: "2rem" }}>Your list is empty!</p>
+      )}
     </main>
   );
 };
@@ -93,11 +39,11 @@ export default Content;
 //     console.log(e.target);
 //   };
 
-{
-  /* EXAMPLE CODE FOR CLICK EVENTS */
-}
-{
-  /* <p onDoubleClick={handleClick}>Hello {name}</p>
+// {
+/* EXAMPLE CODE FOR CLICK EVENTS */
+// }
+// {
+/* <p onDoubleClick={handleClick}>Hello {name}</p>
       <button onClick={handleNameChange}>Change Name</button>
       this needs to be inside an anonymous function else it will be called immediately
       <button
@@ -111,4 +57,4 @@ export default Content;
         }}>
         Button 3
       </button> */
-}
+// }
