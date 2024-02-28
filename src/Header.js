@@ -1,18 +1,17 @@
 import React from "react";
 
-const Header = () => {
-  // this is a way to define inline styles
-  // then call under "<header style={headerStyle}>"
-  const headerStyle = {
-    backgroundColor: "mediumblue",
-    color: "#fff",
-  };
-
+// pass in destructured props from parent
+const Header = ({title}) => {
+  
   return (
     <header>
-      <h1>Groceries List</h1>
+      <h1>{title}</h1>
     </header>
   );
 };
+
+Header.defaultProps = {
+  title: "Default Title"
+}
 
 export default Header;
